@@ -1,32 +1,33 @@
 #include<iostream>
 using namespace std;
 
-bool EVEN(int x)
+bool isODD(int x)
 {
-	return (x % 2 == 0);
+	return x % 2;
 }
-//i % 2 == 0 //even
-//i % 2 == 1 //odd
 
 class Bot
 {
 private:
 	char bot_head;
 	char board_symbol;
-	static const int board_size = 3;
+	static const int board_size = 5;
 	char board[board_size][board_size];
 public:
 	Bot();
 	void build_board();
 	void configure_board(); //for the user to change the board settings
 	void print_board();
+	
 
+public /*debugging*/:
+	void print_board_numerically();
 };
 
 Bot::Bot()
 {
 	bot_head = '*';
-	board_symbol = '#';
+	board_symbol = '#'; //blank spaces = 32
 }
 
 void Bot::build_board()
@@ -34,21 +35,15 @@ void Bot::build_board()
 	//temp:
 	char tempX = '%';
 	char tempY = '!';
-	for (int i = 0; i < board_size; i++)
+	for (int x = 0; x < board_size; x++) //i
 	{
-		for (int j = 0; j < board_size; j++)
+		for (int y = 0; y < board_size; y++) //j
 		{
-			if (EVEN(i))
-				board[i][j] = tempX; //blank spaces = 32
-			else if (!EVEN(i))
-				board[j][i] = tempY;
-
-			if (!EVEN(i))
-				board[i][j] = tempY; //blank spaces = 32
-			else if (EVEN(i))
-				board[j][i] = tempX;
+			if (isODD(x) == isODD(y))
+				board[x][y] = tempX;
+			else
+				board[x][y] = tempY;
 		}
-		//cout << endl;
 	}
 }
 
@@ -76,11 +71,27 @@ void Bot::print_board()
 	}
 }
 
+void Bot::print_board_numerically()
+{
+	for (int i = 0; i < board_size; i++)
+	{
+		for (int j = 0; j < board_size; j++)
+		{
+			cout << i << ',' << j << '|';
+		}
+		if (i != board_size - 1)
+			cout << endl << "------------";
+		cout << endl;
+	}
+}
+
 int main()
 {
 	Bot b;
 	b.build_board();
 	b.print_board();
+	cout << endl;
+	b.print_board_numerically();
 
 	return 0;
 }
