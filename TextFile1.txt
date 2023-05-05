@@ -1,0 +1,9 @@
+the board is not making it in a pattern:
+board should be like::
+% ! %
+! % !
+% ! %
+OR
+! % !
+% ! %
+! % !
