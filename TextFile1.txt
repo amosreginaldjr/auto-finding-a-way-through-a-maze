@@ -1,9 +1,10 @@
-the board is not making it in a pattern:
-board should be like::
-% ! %
-! % !
-% ! %
-OR
-! % !
-% ! %
-! % !
+> Have the time delay (Sleep(1000))
+> When the program is started, make it create a file and in the background, 
+it will keep appending intergers.
+Those intergers will be the random numbers that will be used for the:
+user_start_location, obstacle_generation_locations, user_end_goal_location
+>> You will need to use threads that way the user is not stuck waiting for the numbers
+>>> Make it so that when a number is used, it is deleted from the file
+>>> Limit the file to hold only 100 intergers that way it does not use 
+	up too much of the user storage
+	But when any digit is deleted, always replace it immeaditely
